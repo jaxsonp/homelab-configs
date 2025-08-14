@@ -16,9 +16,12 @@ services:
         Lex4176
       OPS: |
         cojack
+      ICON: "/icon.webp"
+      OVERRIDE_ICON: true
       INIT_MEMORY: "512M"
       MAX_MEMORY: "3G"
       USE_AIKAR_FLAGS: true
       EULA: "TRUE"
     volumes:
       - ./mc-server-data:/data
+      - ./server-img.webp:/icon.webp
