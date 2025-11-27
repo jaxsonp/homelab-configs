@@ -1,9 +1,0 @@
----
-- name: Local services down
-  hosts: local-srvc
-  gather_facts: false
-  tasks:
-    - name: make down
-      community.general.make:
-        chdir: "{{ config_repo_path }}/{{ inventory_hostname }}"
-        target: down
