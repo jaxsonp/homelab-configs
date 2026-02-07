@@ -1,16 +1,11 @@
-# Edit this configuration file to define what should be installed on
-# your system.	Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
-
 {
 	imports =
 		[
 			/etc/nixos/hardware-configuration.nix
 
-			./nix-modules/common.nix
-			./nix-modules/networking.nix
+			../nix-modules/common.nix
+			../nix-modules/networking.nix
 		];
 
 	homelab.network.hostname = "nasbox";
@@ -38,8 +33,8 @@
 		];
 	};
 
-	fileSystems."/mnt/home-data" = {
-		device = "/dev/disk/by-uuid/550ab0dc-78ca-4626-8bff-c5298bc84d5f"; 
+	fileSystems."/mnt/homelab-data" = {
+		device = "/dev/disk/by-uuid/40b750ff-e802-4792-97b5-b9dc98d322ec"; 
 		fsType = "ext4";
 		options = [ "defaults" "noatime" "nofail" ];
 	};
@@ -47,8 +42,8 @@
 	services.nfs.server = {
 		enable = true;
 		exports = ''
-			/mnt/home-data/proxmox 192.168.100.0/24(rw,sync,no_subtree_check,no_root_squash)
-			/mnt/home-data/files 192.168.100.0/24(rw,sync,no_subtree_check)
+			/mnt/homelab-data/proxmox 192.168.100.0/24(rw,sync,no_subtree_check,no_root_squash)
+			/mnt/homelab-data/files 192.168.100.0/24(rw,sync,no_subtree_check)
 		'';
 		# fixed ports for firewall compatibility
 		statdPort = 4000;

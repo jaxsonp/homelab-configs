@@ -9,13 +9,14 @@
 		curl
 		tmux
 		rsync
+		tree
 	];
 	environment.variables.EDITOR = "vim";
 
 	users.users.jaxson = {
 		isNormalUser = true;
 		description = "Jaxson Pahukula";
-		extraGroups = [ "networkmanager" "wheel" ];
+		extraGroups = [ "networkmanager" "wheel" "docker" ];
 		packages = with pkgs; [];
 	};
 
